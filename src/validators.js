@@ -40,12 +40,16 @@ export function validateActivites(activities) {
     return activities.every(isActivityValid)
 }
 
+export function isUndefined(value) {
+    return value === undefined
+}
+
 function isNotEmptyString (value) {
     return isString(value) && value.length > 0
 }
 
 function isSelectOptionValid({value, label}) {
-    return isNumber(value) && isString(label)
+    return isNumber(value) && isNotEmptyString(label)
 }
 
 function isBetween(value, start, end) {
@@ -62,8 +66,4 @@ function isNumber(value) {
 
 function isString(value) {
     return typeof value === 'string'
-}
-
-function isUndefined(value) {
-    return value === undefined
 }
