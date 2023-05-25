@@ -4,12 +4,12 @@
                     <BaseButton :type="BUTTON_TYPE_DANGER" @click="emit('delete')">
                         <TrashIcon class="h-8"></TrashIcon>
                     </BaseButton>
-                    <span class="truncate text-x1">{{ activity }}</span>
+                    <span class="truncate text-x1">{{ activity.name }}</span>
                 </div>
                 <div>
-                    <BaseSelect class="font-mono" 
-                                placeholder="h:mm" 
-                                :selected="secondsToCompete" 
+                    <BaseSelect class="font-mono"
+                                placeholder="h:mm"
+                                :selected="secondsToCompete"
                                 :options="PERIOD_SELECTED_OPTIONS"
                                 @select="secondsToCompete= $event"/>
                 </div>
@@ -31,7 +31,7 @@ const emit = defineEmits({
 defineProps({
     activity: {
         required: true,
-        type: String,
+        type: Object,
         validator: isActivityValid
     }
 })
