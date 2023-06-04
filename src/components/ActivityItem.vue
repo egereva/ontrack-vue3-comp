@@ -9,23 +9,23 @@
                 <div>
                     <BaseSelect class="font-mono"
                                 placeholder="h:mm"
-                                :selected="secondsToCompete"
+                                :selected="activity.secondsToComplete || null"
                                 :options="PERIOD_SELECTED_OPTIONS"
-                                @select="secondsToCompete= $event"/>
+                                @select="emit('setSecondsToComlete', $event || 0)"/>
                 </div>
             </li>
 </template>
 
 <script setup>
-import {ref} from 'vue'
 import BaseSelect from '../components/BaseSelect.vue';
 import BaseButton from '../components/BaseButton.vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
-import {PERIOD_SELECTED_OPTIONS, BUTTON_TYPE_DANGER} from '../constants'
-import {isActivityValid, isUndefined } from '../validators'
+import { PERIOD_SELECTED_OPTIONS, BUTTON_TYPE_DANGER } from '../constants'
+import { isActivityValid, isUndefined, isNumber } from '../validators'
 
 const emit = defineEmits({
-    delete: isUndefined
+    delete: isUndefined,
+    setSecondsToComlete: isNumber
 })
 
 defineProps({
@@ -35,6 +35,4 @@ defineProps({
         validator: isActivityValid
     }
 })
-
-const secondsToCompete = ref(null)
 </script>
